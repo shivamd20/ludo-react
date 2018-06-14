@@ -1,0 +1,55 @@
+.App {
+  text-align: center;
+}
+
+
+
+.App-header {
+  background-color: #222;
+  height: 50px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+
+@-moz-keyframes spin {
+  from { -moz-transform: rotate(0deg); }
+  to { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+  from { -webkit-transform: rotate(0deg); }
+  to { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
+}
+
+@keyframes spinner {
+  0% { 
+     -webkit-transform: rotate3d(1, 1, 1, 20deg);
+     -ms-transform: rotate3d(1, 1, 1, 0deg);
+     -o-transform: rotate3d(1, 1, 1, 50deg);
+     transform: rotate3d(1, 1, 1, 0deg);
+     transform: scale(0.5)
+  }
+  50% { 
+     -webkit-transform: rotate3d(1, 1, 1, 18deg);
+     -ms-transform: rotate3d(1, 1, 1, 40deg);
+     -o-transform: rotate3d(1, 1, 1, 180deg);
+     transform: rotate3d(1, 1, 1, 90deg);
+     transform: scale(1.2)
+  }
+  100% { 
+      -webkit-transform: rotate3d(1, 1, 1, 10deg);
+     -ms-transform: rotate3d(1, 1, 1, 60deg);
+     -o-transform: rotate3d(1, 1, 1, 360deg);
+     transform: rotate3d(1, 1, 1, 70deg);
+     transform: scale(2)
+
+  }
+}
