@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'react-grid-system';
 import Graph from 'directed-graph';
+import { Rectangle, Circle, Ellipse, Line, Polyline, CornerBox, Triangle } from 'react-shapes';
+
+
+const YELLOWSTART=2, REDSTART=28,GREENSTART=41,BLUESTART=15,YELLOWEND=52,GREENEND=39,BLUEEND=13,REDEND=26;
 
 var graph = new Graph({
     '1': ['2'],
@@ -79,19 +83,19 @@ class LudoGrid extends Component {
         grid: [
 
             ['y', 'y', 'y', 'y', 'y', 'y', 'w12', 'w13', 'w14', 'b', 'b', 'b', 'b', 'b', 'b'],
-            ['y', 'u', 'y', 'u', 'y', 'y', 'w11', 'b', 'b15', 'b', 'b', 'u', 'b', 'u', 'b'],
-            ['y', 'y', 'y', 'y', 'y', 'y', 'S10', 'b', 'w16', 'b', 'b', 'b', 'b', 'b', 'b'],
+            ['y', 'u', 'y', 'u', 'y', 'y', 'w11', 'b', 'w15', 'b', 'b', 'u', 'b', 'u', 'b'],
+            ['y', 'y', 'y', 'y', 'y', 'y', 'w10', 'b', 'w16', 'b', 'b', 'b', 'b', 'b', 'b'],
             ['y', 'u', 'y', 'u', 'y', 'y', 'w09', 'b', 'w17', 'b', 'b', 'u', 'b', 'u', 'b'],
             ['y', 'y', 'y', 'y', 'y', 'y', 'w08', 'b', 'w18', 'b', 'b', 'b', 'b', 'b', 'b'],
             ['y', 'y', 'y', 'y', 'y', 'y', 'w07', 'b', 'w19', 'b', 'b', 'b', 'b', 'b', 'b'],
-            ['w01', 'y02', 'w03', 'w04', 'w05', 'w6', 'X', 'X', 'X', 'w20', 'w21', 'w22', 'w23', 'S24', 'w25',],
+            ['w01', 'w02', 'w03', 'w04', 'w05', 'w6', 'X', 'X', 'X', 'w20', 'w21', 'w22', 'w23', 'w24', 'w25',],
             ['w52', 'y', 'y', 'y', 'y', 'y', 'X', 'D', 'X', 'r', 'r', 'r', 'r', 'r', 'w26'],
-            ['w51', 'w50', 'S49', 'w48', 'w47', 'w46', 'X', 'X', 'X', 'w32', 'w31', 'w30', 'w29', 'r28', 'w27'],
+            ['w51', 'w50', 'w49', 'w48', 'w47', 'w46', 'X', 'X', 'X', 'w32', 'w31', 'w30', 'w29', 'w28', 'w27'],
             ['g', 'g', 'g', 'g', 'g', 'g', 'w45', 'g', 'w33', 'r', 'r', 'r', 'r', 'r', 'r'],
             ['g', 'g', 'g', 'g', 'g', 'g', 'w44', 'g', 'w34', 'r', 'r', 'r', 'r', 'r', 'r'],
             ['g', 'u', 'g', 'u', 'g', 'g', 'w43', 'g', 'w35', 'r', 'r', 'u', 'r', 'u', 'r'],
-            ['g', 'g', 'g', 'g', 'g', 'g', 'w42', 'g', 'S36', 'r', 'r', 'r', 'r', 'r', 'r'],
-            ['g', 'u', 'g', 'u', 'g', 'g', 'g41', 'g', 'w37', 'r', 'r', 'u', 'r', 'u', 'r'],
+            ['g', 'g', 'g', 'g', 'g', 'g', 'w42', 'g', 'w36', 'r', 'r', 'r', 'r', 'r', 'r'],
+            ['g', 'u', 'g', 'u', 'g', 'g', 'w41', 'g', 'w37', 'r', 'r', 'u', 'r', 'u', 'r'],
             ['g', 'g', 'g', 'g', 'g', 'g', 'w40', 'w39', 'w38', 'r', 'r', 'r', 'r', 'r', 'r'],
         ],
         pos: 1,
@@ -295,7 +299,7 @@ class LudoGrid extends Component {
                                                 }}>
 
 
-                                                    {/* {this.state.grid[i][j]} */}
+                                                  
 
 
                                                 </Col>
@@ -312,6 +316,14 @@ class LudoGrid extends Component {
 
 
                                                     {/* {this.state.grid[i][j]} */}
+
+                                                    <Circle style={
+                                                        {
+                                                            padding : '10%',
+                                                            '-webkit-animation': 'spinner 10s 15 linear',
+                                                         
+                                                        }
+                                                    }  r={10} fill={{ color: '#2409ba' }} stroke={{ color: '#E622A3' }} strokeWidth={3} />
 
 
 
