@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
-import { Container, Row, Col } from 'react-grid-system';
+// import { Container, Row, div class="inner" } from 'react-grid-system';
 import Graph from 'directed-graph';
 import { Rectangle, Circle, Ellipse, Line, Polyline, CornerBox, Triangle } from 'react-shapes';
+
+
+import Grid from 'material-ui/Grid';
+
 
 
 const YELLOWSTART = 2, REDSTART = 28, GREENSTART = 41, BLUESTART = 15, YELLOWEND = 52, GREENEND = 39, BLUEEND = 13, REDEND = 26;
@@ -107,20 +111,21 @@ if(this.state.game.players[x][y] == actualNum){
 
 
 
+
         case 'r':
         return   <Circle style={
             {
                 '-webkit-animation': 'spinner 10s 15 linear',
 
             }
-        } r={12} fill={{ color: 'red' }} stroke={{ color: '#E622A3' }} strokeWidth={1} />
+        } r={8} fill={{ color: 'red' }} stroke={{ color: '#E622A3' }} strokeWidth={1} />
 
         case 'y':     return   <Circle style={
             {
                 '-webkit-animation': 'spinner 10s 15 linear',
 
             }
-        } r={12} fill={{ color: 'yellow' }} stroke={{ color: '#E622A3' }} strokeWidth={1} />
+        } r={8} fill={{ color: 'yellow' }} stroke={{ color: '#E622A3' }} strokeWidth={1} />
 
         case 'g': 
         return   <Circle style={
@@ -128,7 +133,11 @@ if(this.state.game.players[x][y] == actualNum){
                 '-webkit-animation': 'spinner 10s 15 linear',
 
             }
-        } r={12} fill={{ color: 'green' }} stroke={{ color: '#E622A3' }} strokeWidth={1} />
+        } r={8} fill={{ color: 'green' }} stroke={{ color: '#E622A3' }} style = {{
+            'margin': 'auto',
+            padding: '10',
+            display: 'block'
+        }} strokeWidth={1} />
 
 
 case 'b':
@@ -137,7 +146,7 @@ case 'b':
                 '-webkit-animation': 'spinner 10s 15 linear',
 
             }
-        } r={12} fill={{ color: 'blue' }} stroke={{ color: '#E622A3' }} strokeWidth={1} />
+        } r={8} fill={{ color: 'blue' }} stroke={{ color: '#E622A3' }} strokeWidth={1} />
 
 
     }
@@ -265,15 +274,7 @@ case 'b':
 
 
         return (
-            <Container  style={
-
-                {
-                    overflow: 'auto',
-                    'border-style': ' dashed',
-                    'border-width': ' 1px',
-                    backgroundColor: 'black'
-                }}>
-
+            <div class="grid">
 
 
                 {
@@ -284,9 +285,7 @@ case 'b':
 
 
                         return this.state.grid.map((y, i) => {
-                            return <Row debug style={{
-                                ...this.state.cellStyle
-                            }}>
+                            return <div class="row">
 
 
                                 {
@@ -294,14 +293,17 @@ case 'b':
 
                                         switch (this.state.grid[i][j].charAt(0)) {
 
+                                            
+
                                             case 'y':
-                                                return <Col style={{
+                                                return   <div class="box">
+                                                <div class="inner" style={{
 
                                                     ...styles.cellStyle,
 
                                                     backgroundColor: 'yellow',
 
-                                                    'border-style': ' dashed',
+                                                    //'border-style': ' dashed',
                                                     'border-width': ' 1px',
 
 
@@ -310,15 +312,17 @@ case 'b':
 
                                                     {/* {this.state.grid[i][j]} */}
 
-                                                </Col>
+                                                </div>
+
+                                                </div>
 
 
                                             case 'b':
-                                                return <Col style={{
+                                                return   <div class="box"> <div class="inner" style={{
                                                     ...styles.cellStyle,
                                                     backgroundColor: 'blue',
 
-                                                    'border-style': ' dashed',
+                                                    //'border-style': ' dashed',
                                                     'border-width': ' 1px',
 
                                                 }}>
@@ -328,17 +332,17 @@ case 'b':
 
 
 
-                                                </Col>
+                                                </div> </div>
 
 
 
                                             case 'g':
-                                                return <Col style={{
+                                                return   <div class="box"> <div class="inner" style={{
                                                     ...styles.cellStyle,
                                                     backgroundColor: 'green',
 
 
-                                                    'border-style': ' dashed',
+                                                    //'border-style': ' dashed',
                                                     'border-width': ' 1px',
                                                 }}>
 
@@ -346,16 +350,16 @@ case 'b':
 
 
 
-                                                </Col>
+                                                </div> </div>
 
 
 
                                             case 'r':
-                                                return <Col style={{
+                                                return  <div class="box"> <div class="inner" style={{
                                                     ...styles.cellStyle,
                                                     backgroundColor: 'red',
 
-                                                    'border-style': ' dashed',
+                                                    //'border-style': ' dashed',
                                                     'border-width': ' 1px',
 
                                                 }}>
@@ -367,7 +371,7 @@ case 'b':
 
 
 
-                                                </Col>
+                                                </div> </div>
 
                                       
 
@@ -377,7 +381,7 @@ case 'b':
 
                                                 if (this.state.rolling)
 
-                                                    return <Col onClick={() => {
+                                                    return  <div class="box"> <div class="inner" onClick={() => {
                                                         // alert('ramy');
 
 
@@ -400,11 +404,11 @@ case 'b':
                                                             ...styles.cellStyle,
                                                             backgroundColor: 'pink',
                                                             color: 'gray',
-                                                            'transform': 'scale(3) ',
+                                                            // 'transform': 'scale(3) ',
                                                             'z-index': 50000000,
                                                             position: 'relative',
 
-                                                            'border-style': ' dashed',
+                                                            //'border-style': ' dashed',
                                                             'border-width': ' 1px',
 
 
@@ -426,9 +430,11 @@ case 'b':
 
 
 
-                                                    </Col>
+                                                    </div>
+
+                                                    </div>
                                                 else {
-                                                    return <Col onClick={() => {
+                                                    return <div class="box"> <div class="inner" onClick={() => {
                                                         // alert('ramy');
 
 
@@ -453,10 +459,10 @@ case 'b':
                                                             ...styles.cellStyle,
                                                             backgroundColor: 'pink',
                                                             color: 'gray',
-                                                            'transform': 'scale(3) ',
+                                                            // 'transform': 'scale(3) ',
                                                             'z-index': 50000000,
 
-                                                            'border-style': ' dashed',
+                                                            //'border-style': ' dashed',
                                                             'border-width': ' 1px',
 
 
@@ -466,7 +472,7 @@ case 'b':
                                                         <div
 
                                                             style={{
-                                                                'transform': 'scale(2)',
+                                                                // 'transform': 'scale(2)',
 
                                                             }}
 
@@ -478,20 +484,21 @@ case 'b':
 
 
 
-                                                    </Col>
+                                                    </div>
+                                                    </div>
                                                 }
                                                 break;
 
 
                                             case 'S':
 
-                                                return <Col
+                                                return <div class="box"> <div class="inner"
                                                     style={{
                                                         ...styles.cellStyle,
                                                         backgroundColor: 'pink',
                                                         color: 'gray',
 
-                                                        'border-style': ' dashed',
+                                                        //'border-style': ' dashed',
                                                         'border-width': ' 1px',
 
 
@@ -499,10 +506,11 @@ case 'b':
 
                                                     {/* {this.state.grid[i][j]} */}
 
-                                                </Col>
+                                                </div>
+                                                </div>
 
                                             case 'u':
-                                                return <Col
+                                                return <div class="box"> <div class="inner"
                                                     style={{
                                                         ...styles.cellStyle,
                                                         backgroundColor: 'white',
@@ -516,7 +524,9 @@ case 'b':
 
                                                     {/* {this.state.grid[i][j]} */}
 
-                                                </Col>
+                                                </div>
+
+                                                </div>
 
 
 
@@ -525,13 +535,13 @@ case 'b':
 
 
 
-                                        return <Col style={{
+                                        return  <div class="box"> <div class="inner" style={{
                                             ...styles.cellStyle,
                                             backgroundColor: 'black',
                                             color: 'white',
                                             'border-style': 'none',
 
-                                            'border-style': ' dashed',
+                                            //'border-style': ' dashed',
                                             'border-width': ' 1px',
 
                                         }}> 
@@ -540,7 +550,9 @@ case 'b':
 
                                         {/* {this.state.grid[i][j]} */}
                                         
-                                         </Col>
+                                         </div>
+
+                                         </div>
 
 
 
@@ -548,7 +560,9 @@ case 'b':
                                     })
                                 }
 
-                            </Row>
+
+
+                            </div>
                         }
                         )
 
@@ -561,7 +575,7 @@ case 'b':
 
 
 
-            </Container>
+            </div>
         );
     }
 }
