@@ -1,74 +1,27 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'react-grid-system';
 import Graph from 'directed-graph';
+import { Rectangle, Circle, Ellipse, Line, Polyline, CornerBox, Triangle } from 'react-shapes';
 
-var graph = new Graph({
-    '1': ['2'],
-    '2': ['3'],
-    '3': ['4'],
-    '4': ['5'],
-    '5': ['6'],
-    '6': ['7'],
-    '7': ['8'],
-    '8': ['9'],
-    '9': ['10'],
-    '10': ['11'],
-    '11': ['12'],
-    '12': ['13'],
-    '13': ['14'],
-    '14': ['15'],
-    '15': ['16'],
-    '16': ['17'],
-    '17': ['18'],
-    '18': ['19'],
-    '19': ['20'],
-    '20': ['21'],
-    '21': ['22'],
-    '22': ['23'],
-    '23': ['24'],
-    '24': ['25'],
-    '25': ['26'],
-    '26': ['27'],
-    '27': ['28'],
-    '28': ['29'],
-    '29': ['30'],
-    '30': ['31'],
-    '31': ['32'],
-    '32': ['33'],
-    '33': ['34'],
-    '34': ['35'],
-    '35': ['36'],
-    '36': ['37'],
-    '37': ['38'],
-    '38': ['39'],
-    '39': ['40'],
-    '40': ['41'],
-    '41': ['42'],
-    '42': ['43'],
-    '43': ['44'],
-    '44': ['45'],
-    '45': ['46'],
-    '46': ['47'],
-    '47': ['48'],
-    '48': ['49'],
-    '49': ['50'],
-    '50': ['51'],
-    '51': ['52'],
-    '52': ['1'],
 
-});
+const YELLOWSTART = 2, REDSTART = 28, GREENSTART = 41, BLUESTART = 15, YELLOWEND = 52, GREENEND = 39, BLUEEND = 13, REDEND = 26;
 
 
 
 
 const styles = {
     'cellStyle': {
-        height: '40px',
-        width: '40px',
         textAlign: 'center',
-        padding :  '1%'
         // 'border-style': 'solid',
         // 'border-width': '1px',
+    //    height : '6vw',
+    //    width : '6vw',
+       'font-size' : '4',
+
+       minWidth :'1vw',
+       height:'6vh', /* or whatever width you want. */
+       'max-height':'6vh', /* or whatever width you want. */
+       'display': 'inline-block',
 
 
     }
@@ -80,57 +33,140 @@ class LudoGrid extends Component {
         grid: [
 
             ['y', 'y', 'y', 'y', 'y', 'y', 'w12', 'w13', 'w14', 'b', 'b', 'b', 'b', 'b', 'b'],
-            ['y', 'u', 'w', 'w', 'u', 'y', 'w11', 'b', 'b15', 'b', 'u', 'w', 'w', 'u', 'b'],
+            ['y', 'u', 'w', 'w', 'u', 'y', 'w11', 'b', 'w15', 'b', 'u', 'w', 'w', 'u', 'b'],
             ['y', 'w', 'w', 'w', 'w', 'y', 'w10', 'b', 'w16', 'b', 'w', 'w', 'w', 'w', 'b'],
             ['y', 'w', 'w', 'w', 'w', 'y', 'w09', 'b', 'w17', 'b', 'w', 'w', 'w', 'w', 'b'],
             ['y', 'u', 'w', 'w', 'u', 'y', 'w08', 'b', 'w18', 'b', 'u', 'w', 'w', 'u', 'b'],
             ['y', 'y', 'y', 'y', 'y', 'y', 'w07', 'b', 'w19', 'b', 'b', 'b', 'b', 'b', 'b'],
-            ['w01', 'y02', 'w03', 'w04', 'w05', 'w06', 'X', 'X', 'X', 'w20', 'w21', 'w22', 'w23', 'w24', 'w25',],
+            ['w01', 'w02', 'w03', 'w04', 'w05', 'w06', 'X', 'X', 'X', 'w20', 'w21', 'w22', 'w23', 'w24', 'w25',],
             ['w52', 'y', 'y', 'y', 'y', 'y', 'X', 'D', 'X', 'r', 'r', 'r', 'r', 'r', 'w26'],
-            ['w51', 'w50', 'w49', 'w48', 'w47', 'w46', 'X', 'X', 'X', 'w32', 'w31', 'w30', 'w29', 'r28', 'w27'],
+            ['w51', 'w50', 'w49', 'w48', 'w47', 'w46', 'X', 'X', 'X', 'w32', 'w31', 'w30', 'w29', 'w28', 'w27'],
             ['g', 'g', 'g', 'g', 'g', 'g', 'w45', 'g', 'w33', 'r', 'r', 'r', 'r', 'r', 'r'],
             ['g', 'u', 'w', 'w', 'u', 'g', 'w44', 'g', 'w34', 'r', 'u', 'w', 'w', 'u', 'r'],
             ['g', 'w', 'w', 'w', 'w', 'g', 'w43', 'g', 'w35', 'r', 'w', 'w', 'w', 'w', 'r'],
             ['g', 'w', 'w', 'w', 'w', 'g', 'w42', 'g', 'w36', 'r', 'w', 'w', 'w', 'w', 'r'],
-            ['g', 'u', 'w', 'w', 'u', 'g', 'g41', 'g', 'w37', 'r', 'u', 'w', 'w', 'u', 'r'],
+            ['g', 'u', 'w', 'w', 'u', 'g', 'w41', 'g', 'w37', 'r', 'u', 'w', 'w', 'u', 'r'],
             ['g', 'g', 'g', 'g', 'g', 'g', 'w40', 'w39', 'w38', 'r', 'r', 'r', 'r', 'r', 'r'],
         ],
-        pos: 1,
 
         rolling: false,
 
         game: {
+
+            players : {
             'y': {
-                1: '',
-                2: '',
-                3: '',
-                4: ''
+                1: 1,
+                2: 2,
+                3: 3,
+                4: 4
 
             },
             'g': {
-                1: '',
-                2: '',
-                3: '',
-                4: ''
+                1: 5,
+                2: 6,
+                3: 7,
+                4: 8
             }
             , 'r': {
-                1: '',
-                2: '',
-                3: '',
-                4: ''
+                1: 9,
+                2: 10,
+                3: 11,
+                4: 12
 
             },
             'b': {
-                1: '',
-                2: '',
-                3: '',
-                4: ''
+                1: 14,
+                2: 15,
+                3: 16,
+                4: 18
 
-            },
+            },},
 
             dice: 6,
             turn: 'y'
         }
+    }
+
+
+    checkForPlayer(num) {
+
+var actualNum = parseInt(num[1]+num[2]);
+
+for (var x in this.state.game.players){
+    // console.log(x);
+
+for(var y in this.state.game.players[x]){
+
+
+
+if(this.state.game.players[x][y] == actualNum){
+
+    console.log(x)
+
+    switch (x){
+
+
+
+        case 'r':
+        return   <Circle style={
+            {
+                '-webkit-animation': 'spinner 10s 15 linear',
+
+            }
+        } r={12} fill={{ color: 'red' }} stroke={{ color: '#E622A3' }} strokeWidth={1} />
+
+        case 'y':     return   <Circle style={
+            {
+                '-webkit-animation': 'spinner 10s 15 linear',
+
+            }
+        } r={12} fill={{ color: 'yellow' }} stroke={{ color: '#E622A3' }} strokeWidth={1} />
+
+        case 'g': 
+        return   <Circle style={
+            {
+                '-webkit-animation': 'spinner 10s 15 linear',
+
+            }
+        } r={12} fill={{ color: 'green' }} stroke={{ color: '#E622A3' }} strokeWidth={1} />
+
+
+case 'b':
+            return   <Circle style={
+            {
+                '-webkit-animation': 'spinner 10s 15 linear',
+
+            }
+        } r={12} fill={{ color: 'blue' }} stroke={{ color: '#E622A3' }} strokeWidth={1} />
+
+
+    }
+
+ 
+    
+}
+
+
+}
+
+
+
+}
+
+
+        // console.log(i,j);
+
+        // if(this.findLocation(i,j)){
+
+        //     var {x,y} = this.findLocation(i,j);
+
+        //     // console.log(x,y);
+
+
+        // }
+
+
+
     }
 
     findLocation(num) {
@@ -158,7 +194,10 @@ class LudoGrid extends Component {
     }
 
     setPlayer() {
-        var { i, j } = this.findLocation(this.state.pos);
+        // var { i, j } = this.findLocation(this.state.pos);
+
+        var i = this.state.game.players.y["1"];
+        var j = this.state.game.players.g["2"];
 
         var newArray = this.state.grid.map(function (arr) {
             return arr.slice();
@@ -226,13 +265,13 @@ class LudoGrid extends Component {
 
 
         return (
-            <Container style={
+            <Container  style={
 
                 {
                     overflow: 'auto',
                     'border-style': ' dashed',
                     'border-width': ' 1px',
-                    backgroundColor : 'black'
+                    backgroundColor: 'black'
                 }}>
 
 
@@ -262,8 +301,8 @@ class LudoGrid extends Component {
 
                                                     backgroundColor: 'yellow',
 
-                    'border-style': ' dashed',
-                    'border-width': ' 1px',
+                                                    'border-style': ' dashed',
+                                                    'border-width': ' 1px',
 
 
                                                 }}>
@@ -279,8 +318,8 @@ class LudoGrid extends Component {
                                                     ...styles.cellStyle,
                                                     backgroundColor: 'blue',
 
-                    'border-style': ' dashed',
-                    'border-width': ' 1px',
+                                                    'border-style': ' dashed',
+                                                    'border-width': ' 1px',
 
                                                 }}>
 
@@ -299,12 +338,12 @@ class LudoGrid extends Component {
                                                     backgroundColor: 'green',
 
 
-                    'border-style': ' dashed',
-                    'border-width': ' 1px',
+                                                    'border-style': ' dashed',
+                                                    'border-width': ' 1px',
                                                 }}>
 
 
-                                                    {/* {this.state.grid[i][j]} */}
+
 
 
                                                 </Col>
@@ -316,8 +355,8 @@ class LudoGrid extends Component {
                                                     ...styles.cellStyle,
                                                     backgroundColor: 'red',
 
-                    'border-style': ' dashed',
-                    'border-width': ' 1px',
+                                                    'border-style': ' dashed',
+                                                    'border-width': ' 1px',
 
                                                 }}>
 
@@ -326,125 +365,12 @@ class LudoGrid extends Component {
 
 
 
+
+
                                                 </Col>
 
-                                            case 'X':
+                                      
 
-                                                return <Col  style= {[styles.cellStyle,{
-
-padding : 'none',
-
-                    'border-style': ' dashed',
-                    'border-width': ' 1px',
-
-                                                }]}/>
-                                                {/* if (this.state.rolling)
-                                                    switch (this.state.dice) {
-
-                                                        case 1:
-
-                                                            return <Col style={{
-                                                                ...styles.cellStyle,
-                                                                backgroundColor: 'pink',
-                                                                color: 'black',
-                                                                '-webkit-animation': 'spin 2s infinite linear'
-
-                                                            }} >
-
-                                                                {Math.floor(Math.random() * 6) + 1}
-
-                                                            </Col>
-
-                                                            break;
-                                                        case 2:
-                                                            return <Col style={{
-                                                                ...styles.cellStyle,
-                                                                backgroundColor: 'lightpink',
-                                                                color: 'black',
-                                                                '-webkit-animation': 'spin 1s infinite linear'
-
-                                                            }} >
-
-                                                                {Math.floor(Math.random() * 6) + 1}
-
-                                                            </Col>
-
-
-                                                            break;
-                                                        case 3:
-                                                            return <Col style={{
-                                                                ...styles.cellStyle,
-                                                                backgroundColor: 'gray',
-                                                                color: 'black',
-                                                                '-webkit-animation': 'spin 0.5s infinite linear'
-
-                                                            }} >
-
-                                                                {Math.floor(Math.random() * 6) + 1}
-
-                                                            </Col>
-
-
-                                                            break;
-                                                        case 4:
-
-                                                            return <Col style={{
-                                                                ...styles.cellStyle,
-                                                                backgroundColor: 'lightgray',
-                                                                color: 'black',
-                                                                '-webkit-animation': 'spin 0.2s infinite linear'
-
-                                                            }} >
-
-                                                                {Math.floor(Math.random() * 6) + 1}
-
-                                                            </Col>
-
-                                                            break;
-                                                        case 5:
-
-                                                            return <Col style={{
-                                                                ...styles.cellStyle,
-                                                                backgroundColor: 'brown',
-                                                                color: 'black',
-                                                                '-webkit-animation': 'spin 2s infinite linear'
-
-                                                            }} >
-
-                                                                {Math.floor(Math.random() * 6) + 1}
-
-                                                            </Col>
-
-
-                                                            break;
-                                                        case 6:
-                                                            return <Col style={{
-                                                                ...styles.cellStyle,
-                                                                backgroundColor: 'orange',
-                                                                color: 'black',
-                                                                '-webkit-animation': 'spin 1s infinite linear'
-
-                                                            }} >
-
-                                                                {Math.floor(Math.random() * 6) + 1}
-
-                                                            </Col>
-
-
-
-                                                            break;
-
-                                                    }
-
-                                                return <Col style={{
-                                                    ...styles.cellStyle,
-                                                    backgroundColor: 'gray',
-                                                    color: 'black',
-
-                                                }} >
-                                                    {Math.floor(Math.random() * 6) + 1}
-
-                                                </Col> */}
 
                                             case 'D':
 
@@ -478,8 +404,8 @@ padding : 'none',
                                                             'z-index': 50000000,
                                                             position: 'relative',
 
-                    'border-style': ' dashed',
-                    'border-width': ' 1px',
+                                                            'border-style': ' dashed',
+                                                            'border-width': ' 1px',
 
 
 
@@ -489,7 +415,7 @@ padding : 'none',
 
                                                             style={{
                                                                 '-webkit-animation': 'spinner 0.3s 15 linear',
-                                                                display: 'block',
+                                                        
                                                             }}
 
                                                         >{this.state.dice}
@@ -529,10 +455,9 @@ padding : 'none',
                                                             color: 'gray',
                                                             'transform': 'scale(3) ',
                                                             'z-index': 50000000,
-                                                            position: 'relative',
 
-                    'border-style': ' dashed',
-                    'border-width': ' 1px',
+                                                            'border-style': ' dashed',
+                                                            'border-width': ' 1px',
 
 
 
@@ -542,8 +467,7 @@ padding : 'none',
 
                                                             style={{
                                                                 'transform': 'scale(2)',
-                                                                display: 'block',
-                                                                
+
                                                             }}
 
                                                         >{this.state.dice}
@@ -567,8 +491,8 @@ padding : 'none',
                                                         backgroundColor: 'pink',
                                                         color: 'gray',
 
-                    'border-style': ' dashed',
-                    'border-width': ' 1px',
+                                                        'border-style': ' dashed',
+                                                        'border-width': ' 1px',
 
 
                                                     }}>
@@ -577,20 +501,20 @@ padding : 'none',
 
                                                 </Col>
 
-                                                case 'u': 
+                                            case 'u':
                                                 return <Col
                                                     style={{
                                                         ...styles.cellStyle,
                                                         backgroundColor: 'white',
                                                         color: 'black',
 
-                    'border-style': ' solid',
-                    'border-width': ' 1px',
+                                                        'border-style': ' solid',
+                                                        'border-width': ' 1px',
 
 
                                                     }}>
 
-                                                    {this.state.grid[i][j]} 
+                                                    {/* {this.state.grid[i][j]} */}
 
                                                 </Col>
 
@@ -607,10 +531,16 @@ padding : 'none',
                                             color: 'white',
                                             'border-style': 'none',
 
-                    'border-style': ' dashed',
-                    'border-width': ' 1px',
+                                            'border-style': ' dashed',
+                                            'border-width': ' 1px',
 
-                                        }}> {this.state.grid[i][j]} </Col>
+                                        }}> 
+                                        
+                                       { this.checkForPlayer(this.state.grid[i][j])}
+
+                                        {/* {this.state.grid[i][j]} */}
+                                        
+                                         </Col>
 
 
 

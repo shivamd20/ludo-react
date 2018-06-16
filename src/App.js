@@ -10,11 +10,16 @@ class App extends Component {
         <header className="App-header">
           <h1 >Ludo</h1>
         </header>
-        <p className="App-intro">
-
-<LudoGrid/>
+        <p className="App-intro" style={{
+        }}>
 
         </p>
+
+<div style = {{
+}} >
+<LudoGrid/>
+</div>
+
       </div>
     );
   }
