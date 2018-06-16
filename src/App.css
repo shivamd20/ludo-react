@@ -36,20 +36,32 @@
      -o-transform: rotate3d(1, 1, 1, 0deg);
      transform: rotate3d(1, 1, 1, 0deg);
 
+      transform:   scale(5) 
+
   }
   50% { 
      -webkit-transform: rotate3d(1, 1, 1, 180deg);
      -ms-transform: rotate3d(1, 1, 1, 180deg);
      -o-transform: rotate3d(1, 1, 1, 180deg);
      transform: rotate3d(1, 1, 1, 180deg);
+
+     
    
+  }
+
+  75% {
+    transform:   scale(8) 
+
+
   }
   100% { 
       -webkit-transform: rotate3d(1, 1, 1, 360deg);
      -ms-transform: rotate3d(1, 1, 1, 360deg);
      -o-transform: rotate3d(1, 1, 1, 360deg);
      transform: rotate3d(1, 1, 1, 360deg);
-     transform:   scale(2)
+
+      transform:  scale(3) 
+   
   }
 }
 

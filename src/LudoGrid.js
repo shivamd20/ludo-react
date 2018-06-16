@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import Graph from 'directed-graph';
 import { Rectangle, Circle, Ellipse, Line, Polyline, CornerBox, Triangle } from 'react-shapes';
 
+import ShowDice from './ShowDice';
+
 
 import Grid from 'material-ui/Grid';
 
@@ -379,7 +381,7 @@ case 'b':
                                             case 'D':
 
 
-                                                if (this.state.rolling)
+                                               
 
                                                     return  <div class="box"> <div class="inner" onClick={() => {
                                                         // alert('ramy');
@@ -398,95 +400,42 @@ case 'b':
                                                             this.setPlayer();
                                                         })
 
+                                                        this.rollDice();
 
                                                     }}
-                                                        style={{
-                                                            ...styles.cellStyle,
-                                                            backgroundColor: 'pink',
-                                                            color: 'gray',
-                                                            // 'transform': 'scale(3) ',
-                                                            'z-index': 50000000,
-                                                            position: 'relative',
+                                                        // style={{
+                                                        //     ...styles.cellStyle,
+                                                        //     backgroundColor: 'pink',
+                                                        //     color: 'gray',
+                                                        //     // 'transform': 'scale(3) ',
+                                                        //     'z-index': 50000000,
+                                                        //     position: 'relative',
 
-                                                            //'border-style': ' dashed',
-                                                            'border-width': ' 1px',
+                                                        //     //'border-style': ' dashed',
+                                                        //     'border-width': ' 1px',
 
 
 
-                                                        }}>
-
-                                                        <div
-
-                                                            style={{
-                                                                '-webkit-animation': 'spinner 0.3s 15 linear',
+                                                        // }}
                                                         
-                                                            }}
+                                                        >
 
-                                                        >{this.state.dice}
+                                                       
+                                                        
+                                                        {/* {this.state.dice} */}
+
+                                                        <ShowDice/>
 
                                                             {/* <button>  roll  </button> */}
 
-                                                        </div>
+                                                      
 
 
 
                                                     </div>
 
                                                     </div>
-                                                else {
-                                                    return <div class="box"> <div class="inner" onClick={() => {
-                                                        // alert('ramy');
-
-
-
-                                                        let pos = this.state.pos;
-
-                                                        this.rollDice();
-
-                                                        pos++;
-
-                                                        this.setState({
-
-                                                            pos: pos
-
-                                                        }, () => {
-                                                            this.setPlayer();
-                                                        })
-
-
-                                                    }}
-                                                        style={{
-                                                            ...styles.cellStyle,
-                                                            backgroundColor: 'pink',
-                                                            color: 'gray',
-                                                            // 'transform': 'scale(3) ',
-                                                            'z-index': 50000000,
-
-                                                            //'border-style': ' dashed',
-                                                            'border-width': ' 1px',
-
-
-
-                                                        }}>
-
-                                                        <div
-
-                                                            style={{
-                                                                // 'transform': 'scale(2)',
-
-                                                            }}
-
-                                                        >{this.state.dice}
-
-                                                            {/* <button>  roll  </button>  */}
-
-                                                        </div>
-
-
-
-                                                    </div>
-                                                    </div>
-                                                }
+                                               
                                                 break;
 
 
