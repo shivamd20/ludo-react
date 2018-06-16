@@ -66,8 +66,9 @@ const styles = {
         height: '40px',
         width: '40px',
         textAlign: 'center',
-        'border-style': 'solid',
-        'border-width': '1px',
+        padding :  '1%'
+        // 'border-style': 'solid',
+        // 'border-width': '1px',
 
 
     }
@@ -79,19 +80,19 @@ class LudoGrid extends Component {
         grid: [
 
             ['y', 'y', 'y', 'y', 'y', 'y', 'w12', 'w13', 'w14', 'b', 'b', 'b', 'b', 'b', 'b'],
-            ['y', 'u', 'y', 'u', 'y', 'y', 'w11', 'b', 'b15', 'b', 'b', 'u', 'b', 'u', 'b'],
-            ['y', 'y', 'y', 'y', 'y', 'y', 'S10', 'b', 'w16', 'b', 'b', 'b', 'b', 'b', 'b'],
-            ['y', 'u', 'y', 'u', 'y', 'y', 'w09', 'b', 'w17', 'b', 'b', 'u', 'b', 'u', 'b'],
-            ['y', 'y', 'y', 'y', 'y', 'y', 'w08', 'b', 'w18', 'b', 'b', 'b', 'b', 'b', 'b'],
+            ['y', 'u', 'w', 'w', 'u', 'y', 'w11', 'b', 'b15', 'b', 'u', 'w', 'w', 'u', 'b'],
+            ['y', 'w', 'w', 'w', 'w', 'y', 'w10', 'b', 'w16', 'b', 'w', 'w', 'w', 'w', 'b'],
+            ['y', 'w', 'w', 'w', 'w', 'y', 'w09', 'b', 'w17', 'b', 'w', 'w', 'w', 'w', 'b'],
+            ['y', 'u', 'w', 'w', 'u', 'y', 'w08', 'b', 'w18', 'b', 'u', 'w', 'w', 'u', 'b'],
             ['y', 'y', 'y', 'y', 'y', 'y', 'w07', 'b', 'w19', 'b', 'b', 'b', 'b', 'b', 'b'],
-            ['w01', 'y02', 'w03', 'w04', 'w05', 'w6', 'X', 'X', 'X', 'w20', 'w21', 'w22', 'w23', 'S24', 'w25',],
+            ['w01', 'y02', 'w03', 'w04', 'w05', 'w06', 'X', 'X', 'X', 'w20', 'w21', 'w22', 'w23', 'w24', 'w25',],
             ['w52', 'y', 'y', 'y', 'y', 'y', 'X', 'D', 'X', 'r', 'r', 'r', 'r', 'r', 'w26'],
-            ['w51', 'w50', 'S49', 'w48', 'w47', 'w46', 'X', 'X', 'X', 'w32', 'w31', 'w30', 'w29', 'r28', 'w27'],
+            ['w51', 'w50', 'w49', 'w48', 'w47', 'w46', 'X', 'X', 'X', 'w32', 'w31', 'w30', 'w29', 'r28', 'w27'],
             ['g', 'g', 'g', 'g', 'g', 'g', 'w45', 'g', 'w33', 'r', 'r', 'r', 'r', 'r', 'r'],
-            ['g', 'g', 'g', 'g', 'g', 'g', 'w44', 'g', 'w34', 'r', 'r', 'r', 'r', 'r', 'r'],
-            ['g', 'u', 'g', 'u', 'g', 'g', 'w43', 'g', 'w35', 'r', 'r', 'u', 'r', 'u', 'r'],
-            ['g', 'g', 'g', 'g', 'g', 'g', 'w42', 'g', 'S36', 'r', 'r', 'r', 'r', 'r', 'r'],
-            ['g', 'u', 'g', 'u', 'g', 'g', 'g41', 'g', 'w37', 'r', 'r', 'u', 'r', 'u', 'r'],
+            ['g', 'u', 'w', 'w', 'u', 'g', 'w44', 'g', 'w34', 'r', 'u', 'w', 'w', 'u', 'r'],
+            ['g', 'w', 'w', 'w', 'w', 'g', 'w43', 'g', 'w35', 'r', 'w', 'w', 'w', 'w', 'r'],
+            ['g', 'w', 'w', 'w', 'w', 'g', 'w42', 'g', 'w36', 'r', 'w', 'w', 'w', 'w', 'r'],
+            ['g', 'u', 'w', 'w', 'u', 'g', 'g41', 'g', 'w37', 'r', 'u', 'w', 'w', 'u', 'r'],
             ['g', 'g', 'g', 'g', 'g', 'g', 'w40', 'w39', 'w38', 'r', 'r', 'r', 'r', 'r', 'r'],
         ],
         pos: 1,
@@ -213,7 +214,7 @@ class LudoGrid extends Component {
             this.setState({
                 dice: Math.floor(Math.random() * 6) + 1
             });
-        }, 200, 10);
+        }, 100, 40);
 
 
     }
@@ -229,8 +230,9 @@ class LudoGrid extends Component {
 
                 {
                     overflow: 'auto',
-                    'border-style': ' outset',
-                    'border-width': '5px',
+                    'border-style': ' dashed',
+                    'border-width': ' 1px',
+                    backgroundColor : 'black'
                 }}>
 
 
@@ -260,6 +262,9 @@ class LudoGrid extends Component {
 
                                                     backgroundColor: 'yellow',
 
+                    'border-style': ' dashed',
+                    'border-width': ' 1px',
+
 
                                                 }}>
 
@@ -274,6 +279,8 @@ class LudoGrid extends Component {
                                                     ...styles.cellStyle,
                                                     backgroundColor: 'blue',
 
+                    'border-style': ' dashed',
+                    'border-width': ' 1px',
 
                                                 }}>
 
@@ -292,6 +299,8 @@ class LudoGrid extends Component {
                                                     backgroundColor: 'green',
 
 
+                    'border-style': ' dashed',
+                    'border-width': ' 1px',
                                                 }}>
 
 
@@ -307,6 +316,8 @@ class LudoGrid extends Component {
                                                     ...styles.cellStyle,
                                                     backgroundColor: 'red',
 
+                    'border-style': ' dashed',
+                    'border-width': ' 1px',
 
                                                 }}>
 
@@ -319,8 +330,14 @@ class LudoGrid extends Component {
 
                                             case 'X':
 
-                                                return <Col />
+                                                return <Col  style= {[styles.cellStyle,{
 
+padding : 'none',
+
+                    'border-style': ' dashed',
+                    'border-width': ' 1px',
+
+                                                }]}/>
                                                 {/* if (this.state.rolling)
                                                     switch (this.state.dice) {
 
@@ -461,6 +478,9 @@ class LudoGrid extends Component {
                                                             'z-index': 50000000,
                                                             position: 'relative',
 
+                    'border-style': ' dashed',
+                    'border-width': ' 1px',
+
 
 
                                                         }}>
@@ -470,7 +490,6 @@ class LudoGrid extends Component {
                                                             style={{
                                                                 '-webkit-animation': 'spinner 0.3s 15 linear',
                                                                 display: 'block',
-                                                                padding: '20%'
                                                             }}
 
                                                         >{this.state.dice}
@@ -512,6 +531,9 @@ class LudoGrid extends Component {
                                                             'z-index': 50000000,
                                                             position: 'relative',
 
+                    'border-style': ' dashed',
+                    'border-width': ' 1px',
+
 
 
                                                         }}>
@@ -521,7 +543,7 @@ class LudoGrid extends Component {
                                                             style={{
                                                                 'transform': 'scale(2)',
                                                                 display: 'block',
-                                                                padding: '20%'
+                                                                
                                                             }}
 
                                                         >{this.state.dice}
@@ -545,6 +567,9 @@ class LudoGrid extends Component {
                                                         backgroundColor: 'pink',
                                                         color: 'gray',
 
+                    'border-style': ' dashed',
+                    'border-width': ' 1px',
+
 
                                                     }}>
 
@@ -552,6 +577,22 @@ class LudoGrid extends Component {
 
                                                 </Col>
 
+                                                case 'u': 
+                                                return <Col
+                                                    style={{
+                                                        ...styles.cellStyle,
+                                                        backgroundColor: 'white',
+                                                        color: 'black',
+
+                    'border-style': ' solid',
+                    'border-width': ' 1px',
+
+
+                                                    }}>
+
+                                                    {this.state.grid[i][j]} 
+
+                                                </Col>
 
 
 
@@ -564,7 +605,10 @@ class LudoGrid extends Component {
                                             ...styles.cellStyle,
                                             backgroundColor: 'black',
                                             color: 'white',
-                                            'border-style': 'none'
+                                            'border-style': 'none',
+
+                    'border-style': ' dashed',
+                    'border-width': ' 1px',
 
                                         }}> {this.state.grid[i][j]} </Col>
 
