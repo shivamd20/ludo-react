@@ -6,28 +6,43 @@ import { Rectangle, Circle, Ellipse, Line, Polyline, CornerBox, Triangle } from 
 import ShowDice from './ShowDice';
 
 
-import Grid from 'material-ui/Grid';
-
 
 
 const YELLOWSTART = 2, REDSTART = 28, GREENSTART = 41, BLUESTART = 15, YELLOWEND = 52, GREENEND = 39, BLUEEND = 13, REDEND = 26;
 
+
+const POSITIONS = {
+
+    START : {
+        'y': 2,
+        'r': 28,
+        'g' : 41,
+        'b' : 15
+
+    },
+    END : {
+        b : 13,
+        y : 52,
+        r : 26,
+        g : 39
+
+    }
+
+}
 
 
 
 const styles = {
     'cellStyle': {
         textAlign: 'center',
-        // 'border-style': 'solid',
-        // 'border-width': '1px',
-    //    height : '6vw',
-    //    width : '6vw',
-       'font-size' : '4',
+        //    height : '6vw',
+        //    width : '6vw',
+        'font-size': '4',
 
-       minWidth :'1vw',
-       height:'6vh', /* or whatever width you want. */
-       'max-height':'6vh', /* or whatever width you want. */
-       'display': 'inline-block',
+        minWidth: '1vw',
+        height: '6vh', /* or whatever width you want. */
+        'max-height': '6vh', /* or whatever width you want. */
+        'display': 'inline-block',
 
 
     }
@@ -39,19 +54,19 @@ class LudoGrid extends Component {
         grid: [
 
             ['y', 'y', 'y', 'y', 'y', 'y', 'w12', 'w13', 'w14', 'b', 'b', 'b', 'b', 'b', 'b'],
-            ['y', 'u', 'w', 'w', 'u', 'y', 'w11', 'b', 'w15', 'b', 'u', 'w', 'w', 'u', 'b'],
+            ['y', 'hy1', 'w', 'w', 'hy2', 'y', 'w11', 'b', 'w15', 'b', 'hb1', 'w', 'w', 'hb2', 'b'],
             ['y', 'w', 'w', 'w', 'w', 'y', 'w10', 'b', 'w16', 'b', 'w', 'w', 'w', 'w', 'b'],
             ['y', 'w', 'w', 'w', 'w', 'y', 'w09', 'b', 'w17', 'b', 'w', 'w', 'w', 'w', 'b'],
-            ['y', 'u', 'w', 'w', 'u', 'y', 'w08', 'b', 'w18', 'b', 'u', 'w', 'w', 'u', 'b'],
+            ['y', 'hy3', 'w', 'w', 'hy4', 'y', 'w08', 'b', 'w18', 'b', 'hb3', 'w', 'w', 'hb4', 'b'],
             ['y', 'y', 'y', 'y', 'y', 'y', 'w07', 'b', 'w19', 'b', 'b', 'b', 'b', 'b', 'b'],
             ['w01', 'w02', 'w03', 'w04', 'w05', 'w06', 'X', 'X', 'X', 'w20', 'w21', 'w22', 'w23', 'w24', 'w25',],
             ['w52', 'y', 'y', 'y', 'y', 'y', 'X', 'D', 'X', 'r', 'r', 'r', 'r', 'r', 'w26'],
             ['w51', 'w50', 'w49', 'w48', 'w47', 'w46', 'X', 'X', 'X', 'w32', 'w31', 'w30', 'w29', 'w28', 'w27'],
             ['g', 'g', 'g', 'g', 'g', 'g', 'w45', 'g', 'w33', 'r', 'r', 'r', 'r', 'r', 'r'],
-            ['g', 'u', 'w', 'w', 'u', 'g', 'w44', 'g', 'w34', 'r', 'u', 'w', 'w', 'u', 'r'],
+            ['g', 'hg1', 'w', 'w', 'hg2', 'g', 'w44', 'g', 'w34', 'r', 'hr1', 'w', 'w', 'hr2', 'r'],
             ['g', 'w', 'w', 'w', 'w', 'g', 'w43', 'g', 'w35', 'r', 'w', 'w', 'w', 'w', 'r'],
             ['g', 'w', 'w', 'w', 'w', 'g', 'w42', 'g', 'w36', 'r', 'w', 'w', 'w', 'w', 'r'],
-            ['g', 'u', 'w', 'w', 'u', 'g', 'w41', 'g', 'w37', 'r', 'u', 'w', 'w', 'u', 'r'],
+            ['g', 'hg3', 'w', 'w', 'hg4', 'g', 'w41', 'g', 'w37', 'r', 'hr3', 'w', 'w', 'hr4', 'r'],
             ['g', 'g', 'g', 'g', 'g', 'g', 'w40', 'w39', 'w38', 'r', 'r', 'r', 'r', 'r', 'r'],
         ],
 
@@ -59,123 +74,159 @@ class LudoGrid extends Component {
 
         game: {
 
-            players : {
-            'y': {
-                1: 1,
-                2: 2,
-                3: 3,
-                4: 4
+            players: {
+                'y': {
+                    1: 5,
+                    2: 'h',
+                    3: 'h',
+                    4: 'h'
+                },
+                'g': {
+                    1: 'h',
+                    2: 'h',
+                    3: 'h',
+                    4: 'h'
+                },
+                'r': {
+                    1: 'h',
+                    2: 'h',
+                    3: 'h',
+                    4: 'h'
 
+                },
+                'b': {
+                    1: 'h',
+                    2: 'h',
+                    3: 'h',
+                    4: 'h'
+
+                },
             },
-            'g': {
-                1: 5,
-                2: 6,
-                3: 7,
-                4: 8
-            }
-            , 'r': {
-                1: 9,
-                2: 10,
-                3: 11,
-                4: 12
-
-            },
-            'b': {
-                1: 14,
-                2: 15,
-                3: 16,
-                4: 18
-
-            },},
 
             dice: 6,
-            turn: 'y'
+            turn: 'y',
+            rolled: false
         }
+    }
+
+    checkForHome(x, n) {
+
+        for (let y in this.state.game.players[x]) {
+
+            if (this.state.game.players[x][y] == 'h' && y == n)
+
+                switch (x) {
+
+                    case 'y':
+                        return <Circle style={
+                            {
+                                '-webkit-animation': 'spinner 10s 15 linear',
+
+                            }
+                        } r={8} fill={{ color: 'yellow' }} stroke={{ color: '#E622A3' }} strokeWidth={1} />;
+                    case 'g':
+                        return <Circle style={
+                            {
+                                '-webkit-animation': 'spinner 10s 15 linear',
+
+                            }
+                        } r={8} fill={{ color: 'green' }} stroke={{ color: '#E622A3' }} strokeWidth={1} />;
+                    case 'b':
+                        return <Circle style={
+                            {
+                                '-webkit-animation': 'spinner 10s 15 linear',
+
+                            }
+                        } r={8} fill={{ color: 'blue' }} stroke={{ color: '#E622A3' }} strokeWidth={1} />;
+                    case 'r':
+                        return <Circle style={
+                            {
+                                '-webkit-animation': 'spinner 10s 15 linear',
+
+                            }
+                        } r={8} fill={{ color: 'red' }} stroke={{ color: '#E622A3' }} strokeWidth={1} />;
+
+                }
+
+
+
+
+        }
+
+
     }
 
 
     checkForPlayer(num) {
 
-var actualNum = parseInt(num[1]+num[2]);
+        var actualNum = parseInt(num[1] + num[2]);
 
-for (var x in this.state.game.players){
-    // console.log(x);
+        for (var x in this.state.game.players) {
+            // console.log(x);
 
-for(var y in this.state.game.players[x]){
-
-
-
-if(this.state.game.players[x][y] == actualNum){
-
-    console.log(x)
-
-    switch (x){
+            for (var y in this.state.game.players[x]) {
 
 
 
+                if ((this.state.game.players[x][y] == actualNum)) {
 
-        case 'r':
-        return   <Circle style={
-            {
-                '-webkit-animation': 'spinner 10s 15 linear',
+
+                    // console.log(x,y)
+
+                    switch (x) {
+
+
+
+
+                        case 'r':
+                            return <Circle style={
+                                {
+                                    '-webkit-animation': 'spinner 10s 15 linear',
+
+                                }
+                            } r={8} fill={{ color: 'red' }} stroke={{ color: '#E622A3' }} strokeWidth={1} />
+
+                        case 'y': return <Circle style={
+                            {
+                                '-webkit-animation': 'spinner 10s 15 linear',
+
+                            }
+                        } r={8} fill={{ color: 'yellow' }} stroke={{ color: '#E622A3' }} strokeWidth={1} />
+
+                        case 'g':
+                            return <Circle style={
+                                {
+                                    '-webkit-animation': 'spinner 10s 15 linear',
+
+                                }
+                            } r={8} fill={{ color: 'green' }} stroke={{ color: '#E622A3' }} style={{
+                                'margin': 'auto',
+                                padding: '10',
+                                display: 'block'
+                            }} strokeWidth={1} />
+
+
+                        case 'b':
+                            return <Circle style={
+                                {
+                                    '-webkit-animation': 'spinner 10s 15 linear',
+
+                                }
+                            } r={8} fill={{ color: 'blue' }} stroke={{ color: '#E622A3' }} strokeWidth={1} />
+
+
+                    }
+
+
+
+                }
+
 
             }
-        } r={8} fill={{ color: 'red' }} stroke={{ color: '#E622A3' }} strokeWidth={1} />
-
-        case 'y':     return   <Circle style={
-            {
-                '-webkit-animation': 'spinner 10s 15 linear',
-
-            }
-        } r={8} fill={{ color: 'yellow' }} stroke={{ color: '#E622A3' }} strokeWidth={1} />
-
-        case 'g': 
-        return   <Circle style={
-            {
-                '-webkit-animation': 'spinner 10s 15 linear',
-
-            }
-        } r={8} fill={{ color: 'green' }} stroke={{ color: '#E622A3' }} style = {{
-            'margin': 'auto',
-            padding: '10',
-            display: 'block'
-        }} strokeWidth={1} />
-
-
-case 'b':
-            return   <Circle style={
-            {
-                '-webkit-animation': 'spinner 10s 15 linear',
-
-            }
-        } r={8} fill={{ color: 'blue' }} stroke={{ color: '#E622A3' }} strokeWidth={1} />
-
-
-    }
-
- 
-    
-}
-
-
-}
 
 
 
-}
-
-
-        // console.log(i,j);
-
-        // if(this.findLocation(i,j)){
-
-        //     var {x,y} = this.findLocation(i,j);
-
-        //     // console.log(x,y);
-
-
-        // }
-
+        }
 
 
     }
@@ -204,71 +255,145 @@ case 'b':
 
     }
 
-    setPlayer() {
-        // var { i, j } = this.findLocation(this.state.pos);
 
-        var i = this.state.game.players.y["1"];
-        var j = this.state.game.players.g["2"];
-
-        var newArray = this.state.grid.map(function (arr) {
-            return arr.slice();
-        });
-
-        newArray[i][j] = newArray[i][j] + 'p';
-
-
-        this.setState({
-            grid: newArray
-        })
-
-    }
 
     componentDidMount() {
 
 
-        this.setPlayer();
 
-        this.rollDice();
 
 
     }
 
 
-    rollDice() {
+    canMove(v, i) {
 
-        var self = this;
+        if (i == 6) return true;
 
-        function setIntervalX(callback, delay, repetitions) {
 
-            self.setState({
-                rolling: true
-            })
+        var count =0;
+       
+        for (let k=1;k<5;k++){
 
-            var x = 0;
-            var intervalID = window.setInterval(function () {
+          if ( this.state.game.players[v][k]!= 'h') return true;
 
-                callback();
-
-                if (++x === repetitions) {
-                    window.clearInterval(intervalID);
-
-                    self.setState({
-                        rolling: false
-                    })
-
-                }
-            }, delay);
         }
-        setIntervalX(() => {
 
-            this.setState({
-                dice: Math.floor(Math.random() * 6) + 1
-            });
-        }, 100, 40);
+
+console.log(count);
+        return false;
+
+
 
 
     }
 
+    getAllButtonsPosition(){
+    
+     
+    
+    }
+
+    onButtonClick(str) {
+
+
+        if(str.length <2) return
+
+        if(this.canMove(this.state.game.turn,this.state.game.dice)) {
+
+
+            for(let i=1;i<=4;i++){
+
+
+
+            if(this.state.game.players[this.state.game.turn][i] == parseInt(str[1]+str[2]) ){
+
+
+        var newState = Object.assign({}, this.state);
+
+
+        newState.game.players[this.state.game.turn][i] = this.state.game.players[this.state.game.turn][i] + 5;
+
+        newState.game.turn = this.getNextTurn(this.state.game.turn);
+
+
+        console.log(JSON.stringify(newState.game))
+
+        this.setState(newState, ()=>{
+
+            console.log(JSON.stringify(this.state.game))
+        })
+
+
+
+        return
+
+
+            }else if (this.state.game.players[this.state.game.turn][i] == 'h' && this.state.game.dice == 6){
+
+                var newState = Object.assign({}, this.state);
+
+
+                newState.game.players[this.state.game.turn][i] = POSITIONS.START[this.state.game.turn];
+  
+        
+        
+                console.log(JSON.stringify(newState.game))
+        
+                this.setState(newState, ()=>{
+        
+                    console.log(JSON.stringify(this.state.game))
+                })
+        return
+        
+
+            }
+        
+        }
+
+        }
+
+    }
+
+
+    getNextTurn(t){
+
+        var newTurn;
+
+        if (t == 'y') newTurn = 'b';
+        else if (t== 'b') newTurn = 'r';
+        else if (t == 'r') newTurn = 'g';
+        else if (t == 'g') newTurn = 'y';
+
+        return newTurn;
+
+
+    }
+
+
+    onDiceRolled(i) {
+
+
+        var newState = Object.assign({}, this.state);
+
+
+        newState.game.dice = i
+
+        this.setState(newState)
+
+        if (!this.canMove(this.state.game.turn, i)) {
+
+        
+
+
+            newState.game.turn = this.getNextTurn(this.state.game.turn);
+
+
+            this.setState(newState)
+
+        }
+
+    }
 
 
     render() {
@@ -295,32 +420,32 @@ case 'b':
 
                                         switch (this.state.grid[i][j].charAt(0)) {
 
-                                            
+
 
                                             case 'y':
-                                                return   <div class="box">
-                                                <div class="inner" style={{
+                                                return <div class="box">
+                                                    <div class="inner" style={{
 
-                                                    ...styles.cellStyle,
+                                                        ...styles.cellStyle,
 
-                                                    backgroundColor: 'yellow',
+                                                        backgroundColor: 'yellow',
 
-                                                    //'border-style': ' dashed',
-                                                    'border-width': ' 1px',
-
-
-                                                }}>
+                                                        //'border-style': ' dashed',
+                                                        'border-width': ' 1px',
 
 
-                                                    {/* {this.state.grid[i][j]} */}
+                                                    }}>
 
-                                                </div>
+
+                                                        {/* {this.state.grid[i][j]} */}
+
+                                                    </div>
 
                                                 </div>
 
 
                                             case 'b':
-                                                return   <div class="box"> <div class="inner" style={{
+                                                return <div class="box"> <div class="inner" style={{
                                                     ...styles.cellStyle,
                                                     backgroundColor: 'blue',
 
@@ -339,7 +464,7 @@ case 'b':
 
 
                                             case 'g':
-                                                return   <div class="box"> <div class="inner" style={{
+                                                return <div class="box"> <div class="inner" style={{
                                                     ...styles.cellStyle,
                                                     backgroundColor: 'green',
 
@@ -357,7 +482,7 @@ case 'b':
 
 
                                             case 'r':
-                                                return  <div class="box"> <div class="inner" style={{
+                                                return <div class="box"> <div class="inner" style={{
                                                     ...styles.cellStyle,
                                                     backgroundColor: 'red',
 
@@ -375,67 +500,39 @@ case 'b':
 
                                                 </div> </div>
 
-                                      
+
 
 
                                             case 'D':
 
 
-                                               
-
-                                                    return  <div class="box"> <div class="inner" onClick={() => {
-                                                        // alert('ramy');
 
 
-
-                                                        let pos = this.state.pos;
-
-                                                        pos++;
-
-                                                        this.setState({
-
-                                                            pos: pos
-
-                                                        }, () => {
-                                                            this.setPlayer();
-                                                        })
-
-                                                        this.rollDice();
-
-                                                    }}
-                                                        // style={{
-                                                        //     ...styles.cellStyle,
-                                                        //     backgroundColor: 'pink',
-                                                        //     color: 'gray',
-                                                        //     // 'transform': 'scale(3) ',
-                                                        //     'z-index': 50000000,
-                                                        //     position: 'relative',
-
-                                                        //     //'border-style': ' dashed',
-                                                        //     'border-width': ' 1px',
+                                                return <div class="box"> <div class="inner" onClick={() => {
+                                                    // alert('ramy');
 
 
 
-                                                        // }}
-                                                        
-                                                        >
 
-                                                       
-                                                        
-                                                        {/* {this.state.dice} */}
+                                                }}
+                                    
 
-                                                        <ShowDice/>
-
-                                                            {/* <button>  roll  </button> */}
-
-                                                      
+                                                >
 
 
 
-                                                    </div>
+                                                    <ShowDice turn={this.state.game.turn} onDiceRolled={(i) => this.onDiceRolled(i)} />
 
-                                                    </div>
-                                               
+                                  
+
+
+
+
+
+                                                </div>
+
+                                                </div>
+
                                                 break;
 
 
@@ -458,8 +555,13 @@ case 'b':
                                                 </div>
                                                 </div>
 
-                                            case 'u':
-                                                return <div class="box"> <div class="inner"
+                                            case 'h':
+                                                return <div class="box" onClick={() => {
+
+                                                    this.onButtonClick(this.state.grid[i][j])
+
+
+                                                }} > <div class="inner"
                                                     style={{
                                                         ...styles.cellStyle,
                                                         backgroundColor: 'white',
@@ -471,9 +573,21 @@ case 'b':
 
                                                     }}>
 
-                                                    {/* {this.state.grid[i][j]} */}
 
-                                                </div>
+
+
+                                                        {this.checkForHome(
+                                                            this.state.grid[i][j].charAt(1), this.state.grid[i][j].charAt(2))
+
+
+
+
+
+                                                        }
+
+
+
+                                                    </div>
 
                                                 </div>
 
@@ -484,24 +598,29 @@ case 'b':
 
 
 
-                                        return  <div class="box"> <div class="inner" style={{
+                                        return <div class="box" onClick={() => {
+
+                                            this.onButtonClick(this.state.grid[i][j])
+
+
+                                        }}> <div class="inner" style={{
                                             ...styles.cellStyle,
                                             backgroundColor: 'black',
                                             color: 'white',
-                                            'border-style': 'none',
 
-                                            //'border-style': ' dashed',
-                                            'border-width': ' 1px',
+                                            'border-width': '1px',
+                                            'border-color': 'pink',
+                                            'borderStyle': 'solid'
 
-                                        }}> 
-                                        
-                                       { this.checkForPlayer(this.state.grid[i][j])}
+                                        }}>
 
-                                        {/* {this.state.grid[i][j]} */}
-                                        
-                                         </div>
+                                                {this.checkForPlayer(this.state.grid[i][j])}
 
-                                         </div>
+                                                {/* {this.state.grid[i][j]} */}
+
+                                            </div>
+
+                                        </div>
 
 
 

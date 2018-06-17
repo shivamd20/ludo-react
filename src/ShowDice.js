@@ -12,27 +12,17 @@ import 'react-dice-complete/dist/react-dice-complete.css'
 
 class ShowDice extends Component {
 
-    state  = {
-        dice : 6
-    }
+ 
 
     rollAll() {
         this.reactDice.rollAll()
       }
       rollDoneCallback(num) {
         console.log(`You rolled a ${num}`)
+
+        this.props.onDiceRolled();
       }
-    componentDidMount(){
-
-        setInterval(()=>{
-
-            this.setState({
-                dice : Math.floor(((Math.random()*6))+1)
-            })
-
-        },1000);
-
-    }
+  
 
   render() {
     return (
@@ -40,12 +30,61 @@ class ShowDice extends Component {
 
              'z-index':'99'
       }}>
-     
-     <ReactDice
+
+      {(()=>{
+
+        switch(this.props.turn){
+
+          case 'r':
+        return  <ReactDice
           numDice={1}
-          rollDone={this.rollDoneCallback}
+          faceColor = "red"
+          dotColor = "green"
+          rollDone={this.props.onDiceRolled}
           ref={dice => this.reactDice = dice}
         />
+          
+          ;
+          case 'g':
+        return  <ReactDice
+          faceColor="green"
+          dotColor = "yellow"
+          numDice={1}
+          rollDone={this.props.onDiceRolled}
+          ref={dice => this.reactDice = dice}
+        />
+          
+          ;
+          case 'y':
+        return  <ReactDice
+          numDice={1}
+          faceColor="yellow"
+          dotColor = "blue"
+          rollDone={this.props.onDiceRolled}
+          ref={dice => this.reactDice = dice}
+        />
+          
+          ;
+          case 'b':
+        return  <ReactDice
+          numDice={1}
+          faceColor="blue"
+          dotColor = "red"
+          rollDone={this.props.onDiceRolled}
+          ref={dice => this.reactDice = dice}
+        />
+          
+          ;
+
+
+        }
+
+        return "";
+
+
+      })()}
+     
+   
 
       </div>
     );

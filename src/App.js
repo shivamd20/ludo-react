@@ -15,7 +15,7 @@ class App extends Component {
 
       <div className="App">
 
-<ShowDice/>
+{/* <ShowDice/> */}
         <header className="App-header">
           <h1 >Ludo</h1>
         </header>
